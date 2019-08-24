@@ -2,7 +2,8 @@ const express = require("express");
 
 const mongoose = require("mongoose");
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+      mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL;
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -17,7 +18,7 @@ if (process.env.NODE_ENV === "production") {
 require('./routes/api-routes')(app);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://user:password123@ds139619.mlab.com:39619/heroku_wr8vktkc");
+mongoose.connect(mongoURL);
 
 // Start the API server
 app.listen(PORT, function() {
