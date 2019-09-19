@@ -2,7 +2,7 @@ const express = require("express");
 
 const mongoose = require("mongoose");
 const app = express();
-const PORT = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
+const PORT = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 3000;
 var mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
     mongoURLLabel = "";
 
